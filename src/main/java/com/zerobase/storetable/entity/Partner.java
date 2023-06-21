@@ -15,7 +15,7 @@ import lombok.ToString;
 public class Partner {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long partner_id;
 
     @NotBlank(message = "이름은 필수 입력 항목입니다.")
     private String name;

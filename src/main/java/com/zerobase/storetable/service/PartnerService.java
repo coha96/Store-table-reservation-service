@@ -1,5 +1,6 @@
 package com.zerobase.storetable.service;
 
+import com.zerobase.storetable.dto.PartnerRegistrationRequest;
 import com.zerobase.storetable.entity.Partner;
 import com.zerobase.storetable.repository.PartnerRepository;
 import org.springframework.stereotype.Service;
@@ -14,8 +15,8 @@ public class PartnerService {
         this.partnerRepository = partnerRepository;
     }
 
-    public Partner registerPartner(String name, String email,String password) {
-        Partner partner = new Partner(name, email, password);
+    public Partner registerPartner(PartnerRegistrationRequest request) {
+        Partner partner = new Partner(request.getName(), request.getEmail(), request.getPassword());
         return partnerRepository.save(partner);
     }
 

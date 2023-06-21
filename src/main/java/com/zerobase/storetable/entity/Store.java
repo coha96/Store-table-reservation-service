@@ -1,9 +1,6 @@
 package com.zerobase.storetable.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -15,7 +12,7 @@ import lombok.ToString;
 public class Store {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long storeId;
 
     private String name; // 매장명
     private String location; // 상점 위치

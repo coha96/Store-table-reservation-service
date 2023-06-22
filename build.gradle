@@ -19,7 +19,7 @@ dependencies {
     // 데이터베이스와의 상호작용을 위한 Spring Data JPA 모듈
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     // 인증과 권한 부여를 처리하기 위한 Spring Security 모듈
-    implementation 'org.springframework.boot:spring-boot-starter-security'
+    //implementation 'org.springframework.boot:spring-boot-starter-security'
 
     // 기존의 MariaDB Connector 의존성 주석 처리
     /*

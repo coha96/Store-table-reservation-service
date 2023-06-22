@@ -13,10 +13,11 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+// 데이터베이스와의 매핑을 위한 정보와 엔티티의 속성과 동작을 정의
 public class Partner {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "partner_id")  // partner_id 칼럼과 매핑
+    @Column(name = "partner_id")
     private Long id;
 
     @NotBlank(message = "이름은 필수 입력 항목입니다.")
@@ -40,3 +41,4 @@ public class Partner {
         this.password = password;
     }
 }
+

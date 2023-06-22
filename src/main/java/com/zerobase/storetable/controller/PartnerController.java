@@ -9,7 +9,7 @@ import com.zerobase.storetable.service.StoreService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,19 +18,15 @@ import org.springframework.web.bind.annotation.*;
 public class PartnerController {
     private final PartnerService partnerService;
     private final StoreService storeService;
-    private final BCryptPasswordEncoder passwordEncoder;
+    //private final BCryptPasswordEncoder passwordEncoder;
 
-
-
-    public PartnerController(PartnerService partnerService, StoreService storeService,
-                             BCryptPasswordEncoder passwordEncoder) {
+    public PartnerController(PartnerService partnerService, StoreService storeService) {
+        //BCryptPasswordEncoder passwordEncoder
         this.partnerService = partnerService;
         this.storeService = storeService;
-        this.passwordEncoder = passwordEncoder;
-
+        //this.passwordEncoder = passwordEncoder;
     }
 
-    // Partner 조회 API 엔드포인트
     @GetMapping("/{id}")
     public ResponseEntity<Partner> getPartner(@PathVariable Long id) {
         Partner partner = partnerService.getPartnerById(id);
@@ -41,17 +37,15 @@ public class PartnerController {
         }
     }
 
-    // Partner 등록 API 엔드포인트
     @PostMapping("/register")
     public ResponseEntity<Partner> registerPartner(@Validated @RequestBody PartnerRegistrationRequest request) {
-        String encryptedPassword = passwordEncoder.encode(request.getPassword());
-        request.setPassword(encryptedPassword);
+        //String encryptedPassword = passwordEncoder.encode(request.getPassword());
+        //request.setPassword(encryptedPassword);
 
         Partner partner = partnerService.registerPartner(request);
         return ResponseEntity.ok(partner);
     }
 
-    // 매장 등록 API 엔드포인트
     @PostMapping("/{partnerId}/stores/register")
     public ResponseEntity<Store> registerStore(@PathVariable @NotNull Long partnerId, @Valid @RequestBody StoreRegistrationRequest request) {
         if (partnerId == null || partnerId == 0) {

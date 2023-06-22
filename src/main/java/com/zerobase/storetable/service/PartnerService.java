@@ -16,7 +16,8 @@ public class PartnerService {
     }
 
     public Partner registerPartner(PartnerRegistrationRequest request) {
-        Partner partner = new Partner(request.getName(), request.getEmail(), request.getPassword());
+        Partner partner = new Partner(request.getName(), request.getEmail(),
+                request.getPassword());
         return partnerRepository.save(partner);
     }
 

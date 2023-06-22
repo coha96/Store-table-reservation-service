@@ -6,7 +6,10 @@ import com.zerobase.storetable.entity.Partner;
 import com.zerobase.storetable.entity.Store;
 import com.zerobase.storetable.service.PartnerService;
 import com.zerobase.storetable.service.StoreService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,10 +18,16 @@ import org.springframework.web.bind.annotation.*;
 public class PartnerController {
     private final PartnerService partnerService;
     private final StoreService storeService;
+    private final BCryptPasswordEncoder passwordEncoder;
 
-    public PartnerController(PartnerService partnerService, StoreService storeService) {
+
+
+    public PartnerController(PartnerService partnerService, StoreService storeService,
+                             BCryptPasswordEncoder passwordEncoder) {
         this.partnerService = partnerService;
         this.storeService = storeService;
+        this.passwordEncoder = passwordEncoder;
+
     }
 
     // Partner 조회 API 엔드포인트
@@ -32,18 +41,27 @@ public class PartnerController {
         }
     }
 
-
     // Partner 등록 API 엔드포인트
     @PostMapping("/register")
     public ResponseEntity<Partner> registerPartner(@Validated @RequestBody PartnerRegistrationRequest request) {
+        String encryptedPassword = passwordEncoder.encode(request.getPassword());
+        request.setPassword(encryptedPassword);
+
         Partner partner = partnerService.registerPartner(request);
         return ResponseEntity.ok(partner);
     }
 
     // 매장 등록 API 엔드포인트
-    @PostMapping("/stores/register")
-    public ResponseEntity<Store> registerStore(@Validated @RequestBody StoreRegistrationRequest request) {
-        Store store = storeService.registerStore(request);
+    @PostMapping("/{partnerId}/stores/register")
+    public ResponseEntity<Store> registerStore(@PathVariable @NotNull Long partnerId, @Valid @RequestBody StoreRegistrationRequest request) {
+        if (partnerId == null || partnerId == 0) {
+            return ResponseEntity.notFound().build();
+        }
+        Partner partner = partnerService.getPartnerById(partnerId);
+        if (partner == null) {
+            return ResponseEntity.notFound().build();
+        }
+        Store store = storeService.registerStore(request, partner);
         return ResponseEntity.ok(store);
     }
 }

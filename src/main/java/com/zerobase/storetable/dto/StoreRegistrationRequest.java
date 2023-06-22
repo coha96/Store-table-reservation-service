@@ -1,6 +1,7 @@
 package com.zerobase.storetable.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -18,13 +19,17 @@ public class StoreRegistrationRequest {
 
     private String description;
 
+    @NotNull(message = "파트너 ID는 필수 입력 항목입니다.")
+    private Long partnerId;
+
     public StoreRegistrationRequest() {
         // 기본 생성자
     }
 
-    public StoreRegistrationRequest(String name, String location, String description) {
+    public StoreRegistrationRequest(String name, String location, String description, Long partnerId) {
         this.name = name;
         this.location = location;
         this.description = description;
+        this.partnerId = partnerId;
     }
 }

@@ -14,9 +14,8 @@ public class StoreService {
         this.storeRepository = storeRepository;
     }
 
-    public Store registerStore(StoreRegistrationRequest request) {
-        Store store = new Store(request.getName(), request.getLocation(), request.getDescription());
+    public Store registerStore(StoreRegistrationRequest request, Partner partner) {
+        Store store = new Store(request.getName(), request.getLocation(), request.getDescription(), partner);
         return storeRepository.save(store);
     }
-
 }

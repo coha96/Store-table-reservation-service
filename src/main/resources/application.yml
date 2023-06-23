@@ -4,12 +4,12 @@ spring:
     username: subinha
     password: zerobase
     driver-class-name: com.mysql.cj.jdbc.Driver
-    hikari:
-      data-source-properties:
-        cachePrepStmts: true
-        prepStmtCacheSize: 250
-        prepStmtCacheSqlLimit: 2048
-        useServerPrepStmts: true
+#    hikari:
+#      data-source-properties:
+#        cachePrepStmts: true
+#        prepStmtCacheSize: 250
+#        prepStmtCacheSqlLimit: 2048
+#        useServerPrepStmts: true
 
 
 # hikari와 관련된 설정은 선택적으로 적용할 수 있음

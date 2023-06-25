@@ -41,4 +41,3 @@ public class Partner {
         this.password = password;
     }
 }
-

@@ -13,7 +13,7 @@ public class UserRegistrationRequest {
     private String name;
     private String phone;
 
-    public UserRegistrationRequest() {
-        // 기본 생성자
-    }
+//    public UserRegistrationRequest() {
+//        // 기본 생성자
+//    }
 }

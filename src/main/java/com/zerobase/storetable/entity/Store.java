@@ -11,9 +11,6 @@ import lombok.ToString;
 @ToString
 public class Store {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long storeId;
-
     private String name; // 매장명
     private String location; // 상점 위치
     private String description; // 상점 설명

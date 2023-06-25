@@ -2,6 +2,7 @@ package com.zerobase.storetable.controller;
 
 import com.zerobase.storetable.dto.UserRegistrationRequest;
 import com.zerobase.storetable.entity.User;
+import com.zerobase.storetable.service.StoreService;
 import com.zerobase.storetable.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -11,9 +12,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public class UserController {
     private final UserService userService;
+    private final StoreService storeService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, StoreService storeService) {
         this.userService = userService;
+        this.storeService = storeService;
     }
 
     @GetMapping("/{id}")
@@ -31,4 +34,5 @@ public class UserController {
         User user = userService.registerUser(request);
         return ResponseEntity.ok(user);
     }
+
 }

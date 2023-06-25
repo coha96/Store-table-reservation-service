@@ -6,6 +6,8 @@ import com.zerobase.storetable.entity.Store;
 import com.zerobase.storetable.repository.StoreRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class StoreService {
     private final StoreRepository storeRepository;
@@ -15,7 +17,14 @@ public class StoreService {
     }
 
     public Store registerStore(StoreRegistrationRequest request, Partner partner) {
-        Store store = new Store(request.getName(), request.getLocation(), request.getDescription(), partner);
+        Store store = new Store(request.getName(), request.getLocation(),
+                request.getDescription(), partner);
         return storeRepository.save(store);
     }
+
+    public Store getStoreById(String id) {
+        Optional<Store> optionalStore = storeRepository.findById(id);
+        return optionalStore.orElse(null);
+    }
+
 }

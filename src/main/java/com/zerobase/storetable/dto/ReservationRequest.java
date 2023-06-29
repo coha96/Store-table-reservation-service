@@ -17,5 +17,4 @@ public class ReservationRequest {
     private String phonenumber;
     private String username;
     private String userid;
-
 }

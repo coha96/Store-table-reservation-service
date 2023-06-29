@@ -25,4 +25,8 @@ public class PartnerService {
         Optional<Partner> partnerOptional = partnerRepository.findById(id);
         return partnerOptional.orElse(null);
     }
+
+    public Partner getPartnerByName(String name) {
+        return partnerRepository.findFirstByName(name);
+    }
 }

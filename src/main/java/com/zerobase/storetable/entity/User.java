@@ -1,9 +1,7 @@
 package com.zerobase.storetable.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +11,6 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@Table(name = "user")
 public class User {
     @Id
     @NotBlank(message = "아이디는 필수 입력 항목입니다.")
@@ -31,7 +28,6 @@ public class User {
     public User() {
         // 기본 생성자
     }
-
     public User(String id, String password, String name, String phone) {
         this.id = id;
         this.password = password;

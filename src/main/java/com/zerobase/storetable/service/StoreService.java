@@ -16,15 +16,22 @@ public class StoreService {
         this.storeRepository = storeRepository;
     }
 
+    public Store getStoreByName(String name) {
+        Optional<Store> storeOptional = storeRepository.findById(name);
+        return storeOptional.orElse(null);
+    }
+
     public Store registerStore(StoreRegistrationRequest request, Partner partner) {
         Store store = new Store(request.getName(), request.getLocation(),
                 request.getDescription(), partner);
         return storeRepository.save(store);
     }
 
-    public Store getStoreById(String id) {
-        Optional<Store> optionalStore = storeRepository.findById(id);
-        return optionalStore.orElse(null);
+    public boolean isStoreRegistered(String storename) {
+        return storeRepository.existsByName(storename);
     }
-
+//    public Store getStoreById(String id) {
+//        Optional<Store> optionalStore = storeRepository.findById(id);
+//        return optionalStore.orElse(null);
+//    }
 }

@@ -12,8 +12,4 @@ public class UserRegistrationRequest {
     private String password;
     private String name;
     private String phone;
-
-//    public UserRegistrationRequest() {
-//        // 기본 생성자
-//    }
 }

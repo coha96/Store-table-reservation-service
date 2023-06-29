@@ -30,7 +30,6 @@ public class Reservation {
 
     public Reservation() {
     }
-
     public Reservation(String storename, LocalDate reservationdate, LocalTime reservationtime, String phonenumber, String username, User user) {
         this.storename = storename;
         this.reservationdate = reservationdate;

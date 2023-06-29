@@ -2,7 +2,6 @@ package com.zerobase.storetable.controller;
 
 import com.zerobase.storetable.dto.UserRegistrationRequest;
 import com.zerobase.storetable.entity.User;
-import com.zerobase.storetable.service.StoreService;
 import com.zerobase.storetable.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,11 +12,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public class UserController {
     private final UserService userService;
-    private final StoreService storeService;
 
-    public UserController(UserService userService, StoreService storeService) {
+    public UserController(UserService userService) {
         this.userService = userService;
-        this.storeService = storeService;
     }
 
     // user id 검색(개발자 확인용)

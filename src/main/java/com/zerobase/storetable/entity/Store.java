@@ -1,5 +1,6 @@
 package com.zerobase.storetable.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,6 +18,7 @@ public class Store {
 
     @ManyToOne
     @JoinColumn(name = "partner_id")
+    @JsonIgnore // partner 필드를 JSON 직렬화/역직렬화 시 무시
     private Partner partner;
 
     public Store() {

@@ -24,7 +24,7 @@ public class StoreController {
     public ResponseEntity<Store> getStoreByName(@PathVariable String name) {
         Store store = storeService.getStoreByName(name);
         if (store != null) {
-            store.setPartner(null); // 파트너 정보를 null 로 설정하여 응답에서 제외
+            store.setPartner(null);
             return ResponseEntity.ok(store);
         } else {
             return ResponseEntity.notFound().build();
@@ -45,5 +45,4 @@ public class StoreController {
 
         return ResponseEntity.ok("매장 등록이 완료되었습니다.");
     }
-
 }

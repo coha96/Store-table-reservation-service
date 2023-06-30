@@ -24,6 +24,9 @@ public class Reservation {
     private String phonenumber;
     private String username;
 
+    @Column(name = "checked_in")
+    private boolean checkedIn;
+
     @ManyToOne
     @JoinColumn(name = "userid")
     private User user;
@@ -38,4 +41,8 @@ public class Reservation {
         this.username = username;
         this.user = user;
     }
+    public void setCheckedIn(boolean checkedIn) {
+        this.checkedIn = checkedIn;
+    }
+
 }

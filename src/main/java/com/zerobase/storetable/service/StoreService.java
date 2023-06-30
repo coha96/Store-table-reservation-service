@@ -30,8 +30,4 @@ public class StoreService {
     public boolean isStoreRegistered(String storename) {
         return storeRepository.existsByName(storename);
     }
-//    public Store getStoreById(String id) {
-//        Optional<Store> optionalStore = storeRepository.findById(id);
-//        return optionalStore.orElse(null);
-//    }
 }

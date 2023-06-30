@@ -6,8 +6,11 @@ import com.zerobase.storetable.entity.User;
 import com.zerobase.storetable.service.ReservationService;
 import com.zerobase.storetable.service.StoreService;
 import com.zerobase.storetable.service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/reservations")
@@ -44,5 +47,25 @@ public class ReservationController {
 
         Reservation reservation = reservationService.registerReservation(request, user);
         return ResponseEntity.ok("예약이 완료되었습니다.");
+    }
+
+    @PostMapping("/check-in")
+    public ResponseEntity<?> checkInReservation(@RequestParam("ordernumber") Long ordernumber) {
+        Reservation reservation = reservationService.getReservationById(ordernumber);
+        if (reservation == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("예약 정보가 없습니다.");
+        }
+
+        LocalDateTime reservationDateTime = LocalDateTime.of(reservation.getReservationdate(), reservation.getReservationtime());
+        LocalDateTime currentDateTime = LocalDateTime.now();
+
+        if (currentDateTime.isBefore(reservationDateTime.minusMinutes(10))) {
+            return ResponseEntity.badRequest().body("예약 시간 10분 전부터 도착 확인이 가능합니다.");
+        }
+
+        reservation.setCheckedIn(true);
+        reservationService.saveReservation(reservation);
+
+        return ResponseEntity.ok("도착 확인이 완료되었습니다.");
     }
 }

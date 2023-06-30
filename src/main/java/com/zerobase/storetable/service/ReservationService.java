@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReservationService {
@@ -27,5 +28,14 @@ public class ReservationService {
     public boolean isReservationTimeUnavailable(String storename, LocalDate reservationdate, LocalTime reservationtime) {
         List<Reservation> reservations = reservationRepository.findByStorenameAndReservationdateAndReservationtime(storename, reservationdate, reservationtime);
         return !reservations.isEmpty();
+    }
+
+    public Reservation getReservationById(Long ordernumber) {
+        Optional<Reservation> reservationOptional = reservationRepository.findById(ordernumber);
+        return reservationOptional.orElse(null);
+    }
+
+    public void saveReservation(Reservation reservation) {
+        reservationRepository.save(reservation);
     }
 }

@@ -38,4 +38,9 @@ public class ReservationService {
     public void saveReservation(Reservation reservation) {
         reservationRepository.save(reservation);
     }
+
+    public boolean hasCheckedIn(Long ordernumber) {
+        Reservation reservation = getReservationById(ordernumber);
+        return reservation != null && reservation.isCheckedin();
+    }
 }

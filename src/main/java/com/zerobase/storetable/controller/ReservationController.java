@@ -63,7 +63,7 @@ public class ReservationController {
             return ResponseEntity.badRequest().body("예약 시간 10분 전부터 도착 확인이 가능합니다.");
         }
 
-        reservation.setCheckedIn(true);
+        reservation.setCheckedin(true);
         reservationService.saveReservation(reservation);
 
         return ResponseEntity.ok("도착 확인이 완료되었습니다.");

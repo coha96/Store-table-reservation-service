@@ -19,6 +19,14 @@ public class ReviewService {
         this.userService = userService;
     }
 
+
+    /**
+     * 리뷰를 작성합니다.
+     *
+     * @param request 리뷰 요청 정보
+     * @return 작성된 리뷰
+     * @throws IllegalArgumentException 해당 상점이나 사용자를 찾을 수 없을 경우 예외가 발생합니다.
+     */
     public Review writeReview(ReviewRequest request) {
         Store store = storeService.getStoreByName(request.getStoreName());
         if (store == null) {

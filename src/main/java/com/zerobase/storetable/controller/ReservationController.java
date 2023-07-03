@@ -25,6 +25,13 @@ public class ReservationController {
         this.userService = userService;
     }
 
+    /**
+     * 예약을 등록합니다.
+     *
+     * @param userid  사용자 ID
+     * @param request 예약 요청 정보
+     * @return ResponseEntity
+     */
     @PostMapping("/register")
     public ResponseEntity<?> registerReservation(@RequestParam("userid") String userid, @RequestBody ReservationRequest request) {
         if (userid == null || userid.isEmpty()) {
@@ -49,6 +56,13 @@ public class ReservationController {
         return ResponseEntity.ok("예약이 완료되었습니다.");
     }
 
+
+    /**
+     * 예약 체크인을 처리합니다. (즉, 도착 확인)
+     *
+     * @param ordernumber 예약 번호
+     * @return ResponseEntity
+     */
     @PostMapping("/check-in")
     public ResponseEntity<?> checkInReservation(@RequestParam("ordernumber") Long ordernumber) {
         Reservation reservation = reservationService.getReservationById(ordernumber);

@@ -22,6 +22,13 @@ public class ReviewController {
         this.reservationService = reservationService;
     }
 
+    /**
+     * 리뷰를 작성합니다.
+     *
+     * @param ordernumber 예약 번호
+     * @param request     리뷰 요청 정보
+     * @return HTTP 응답 객체
+     */
     @PostMapping("/reviews")
     public ResponseEntity<String> writeReview(@RequestParam("ordernumber") Long ordernumber,
                                               @Validated @RequestBody ReviewRequest request) {

@@ -17,6 +17,12 @@ public class PartnerController {
         this.partnerService = partnerService;
     }
 
+    /**
+     * 파트너를 등록합니다.
+     *
+     * @param request 파트너 등록 요청 객체
+     * @return 응답 엔티티
+     */
     @PostMapping("/register")
     public ResponseEntity<String> registerPartner(@Validated @RequestBody PartnerRegistrationRequest request) {
         Partner existingPartner = partnerService.getPartnerByName(request.getName());
@@ -32,6 +38,12 @@ public class PartnerController {
         }
     }
 
+    /**
+     * 파트너를 조회합니다.
+     *
+     * @param id 파트너 ID
+     * @return 응답 엔티티
+     */
     // partner id 검색(개발자 확인용)
     @GetMapping("/{id}")
     public ResponseEntity<Partner> getPartner(@PathVariable Long id) {

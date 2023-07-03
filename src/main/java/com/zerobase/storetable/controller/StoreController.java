@@ -20,6 +20,12 @@ public class StoreController {
         this.partnerService = partnerService;
     }
 
+    /**
+     * 지정된 상점 이름으로 상점을 조회합니다.
+     *
+     * @param name 상점 이름
+     * @return 상점 엔티티 객체 (존재하지 않을 경우 404 응답)
+     */
     @GetMapping("/{name}")
     public ResponseEntity<Store> getStoreByName(@PathVariable String name) {
         Store store = storeService.getStoreByName(name);
@@ -31,6 +37,12 @@ public class StoreController {
         }
     }
 
+    /**
+     * 상점을 등록합니다.
+     *
+     * @param request 등록할 상점의 정보를 담고 있는 요청 객체
+     * @return 성공적으로 등록되었을 경우 200 응답, 그렇지 않은 경우 404 응답
+     */
     @PostMapping("/register")
     public ResponseEntity<String> registerStore(@Valid @RequestBody StoreRegistrationRequest request) {
         Long partnerId = request.getPartnerId();

@@ -25,7 +25,6 @@ public class ReviewController {
     @PostMapping("/reviews")
     public ResponseEntity<String> writeReview(@RequestParam("ordernumber") Long ordernumber,
                                               @Validated @RequestBody ReviewRequest request) {
-        // Check if the user has checked in for the given reservation
         if (!reservationService.hasCheckedIn(ordernumber)) {
             return new ResponseEntity<>("리뷰를 작성할 수 없는 권한이 없습니다.", HttpStatus.FORBIDDEN);
         }

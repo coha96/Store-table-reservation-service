@@ -1,11 +1,9 @@
 package com.zerobase.storetable.service;
 
 import com.zerobase.storetable.dto.ReviewRequest;
-import com.zerobase.storetable.entity.Reservation;
 import com.zerobase.storetable.entity.Review;
 import com.zerobase.storetable.entity.Store;
 import com.zerobase.storetable.entity.User;
-import com.zerobase.storetable.repository.ReservationRepository;
 import com.zerobase.storetable.repository.ReviewRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +12,6 @@ public class ReviewService {
     private final ReviewRepository reviewRepository;
     private final StoreService storeService;
     private final UserService userService;
-
 
     public ReviewService(ReviewRepository reviewRepository, StoreService storeService, UserService userService) {
         this.reviewRepository = reviewRepository;
@@ -36,6 +33,4 @@ public class ReviewService {
         Review review = new Review(store, user, request.getRating(), request.getContent());
         return reviewRepository.save(review);
     }
-
-
 }

@@ -28,6 +28,7 @@ public class User {
     public User() {
         // 기본 생성자
     }
+
     public User(String id, String password, String name, String phone) {
         this.id = id;
         this.password = password;

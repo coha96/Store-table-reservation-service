@@ -11,5 +11,4 @@ import java.util.List;
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
     List<Reservation> findByStorenameAndReservationdateAndReservationtime(String storename, LocalDate reservationdate, LocalTime reservationtime);
-
 }

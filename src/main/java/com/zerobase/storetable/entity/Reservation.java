@@ -1,7 +1,6 @@
 package com.zerobase.storetable.entity;
 
 import jakarta.persistence.*;
-import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -33,6 +32,7 @@ public class Reservation {
 
     public Reservation() {
     }
+
     public Reservation(String storename, LocalDate reservationdate, LocalTime reservationtime, String phonenumber, String username, User user) {
         this.storename = storename;
         this.reservationdate = reservationdate;
@@ -41,6 +41,7 @@ public class Reservation {
         this.username = username;
         this.user = user;
     }
+
     public void setCheckedin(boolean checkedin) {
         this.checkedin = checkedin;
     }
